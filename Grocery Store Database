@@ -1,0 +1,30 @@
+--Create grocery store database
+
+CREATE TABLE grocery_store (id INTEGER PRIMARY KEY, item TEXT, price MONEY, quantity INTEGER, section TEXT);
+
+INSERT INTO grocery_store VALUES (1, "Apples", 0.99, 17, "Produce");
+INSERT INTO grocery_store VALUES (2, "Bananas", 0.59, 34, "Produce");
+INSERT INTO grocery_store VALUES (3, "Oranges", 0.99, 25, "Produce");
+INSERT INTO grocery_store VALUES (4, "Milk", 3.99, 12, "Dairy");
+INSERT INTO grocery_store VALUES (5, "Yogurt", 2.99, 8, "Dairy");
+INSERT INTO grocery_store VALUES (6, "Cheddar Cheese", 2.49, 34, "Dairy");
+INSERT INTO grocery_store VALUES (7, "Ground Beef", 2.79, 21, "Meat");
+INSERT INTO grocery_store VALUES (8, "Lamb Patties", 4.99, 18, "Meat");
+INSERT INTO grocery_store VALUES (9, "Cheetos", 2.99, 15, "Snacks");
+INSERT INTO grocery_store VALUES (10, "Popcorn", 1.99, 9, "Snacks");
+
+--Display all items in the grocery store from most expensive to least expensive.
+SELECT item, price FROM grocery_store
+ORDER BY price desc;
+
+--How many different items does this grocery store sell?
+SELECT COUNT(item) FROM grocery_store;
+
+--How many total items are in each section from least to greatest?
+SELECT section, SUM(quantity) FROM grocery_store
+GROUP BY section
+ORDER BY SUM(quantity) asc;
+
+--What is the average price of items in the Produce section?
+SELECT ROUND(AVG(price), 2) FROM grocery_store
+WHERE section = "Produce";
